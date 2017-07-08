@@ -1,0 +1,12 @@
+---
+# ansible playbook.yml
+- name: Test debug module
+  hosts: all
+  #become: true
+  tasks:
+  - name: Display debug message
+    debug:
+      msg: "Hello world from PC {{ ansible_hostname }} running {{ ansible_distribution }} version {{ ansible_distribution_version }}"
+    when: 
+      - ansible_default_ipv4.gateway == "192.168.1.1"
+      - ansible_dns.nameservers[0] == "127.0.1.1"
